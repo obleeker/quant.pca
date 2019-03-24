@@ -1,0 +1,15 @@
+Package: quant.pca
+Type: Package
+Title: Principal Quantile Components Analysis
+Version: 0.1.0
+Authors@R: person("Oliver", "Bleeker", email = "o.bleeker@outlook.com", role = c("aut", "cre"))
+Description: A package to perform Principal Quantile Components Analysis, an analogue to PCA in the asymmetric L1 norm. For the theory behind see Tran et. al.: "Principal Component Analysis in an Asymmetric Norm".
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    quadprog,
+    progress,
+    foreach,
+    doParallel
+RoxygenNote: 6.1.0
