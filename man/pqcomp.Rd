@@ -2,11 +2,11 @@
 % Please edit documentation in R/pqc_main.R
 \name{pqcomp}
 \alias{pqcomp}
-\title{Main quantile components algorithm}
+\title{Principal Quantile Components}
 \usage{
 pqcomp(data, projDim, tau, lambda, muEst = TRUE,
   epsilon = 1/log10(nrow(data)), iterTol = 200, convTol = NA,
-  preOut = NA, progBar = TRUE, doPar = TRUE, doSeq = FALSE,
+  preOut = NA, progBar = TRUE, doPar = FALSE, doSeq = FALSE,
   randomSeed = NA)
 }
 \arguments{
@@ -40,5 +40,13 @@ pqcomp(data, projDim, tau, lambda, muEst = TRUE,
 list object containing components and loadings
 }
 \description{
-Main quantile components algorithm
+Calculate principal quantile components (PQC) via smooth approximation of the asymmetric L1-Norm.
+}
+\examples{
+# generating data
+n = 100
+X = data.frame(cbind(rnorm(n),rnorm(n),rnorm(n)))
+# running the main method
+pqcomp(data = X, projDim = 2, tau =  0.9, lambda = 0.1, muEst = T)
+
 }

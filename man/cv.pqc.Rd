@@ -2,9 +2,7 @@
 % Please edit documentation in R/pqc_main.R
 \name{cv.pqc}
 \alias{cv.pqc}
-\title{Cross validation wrapper for pqcomp(): Select ranges for rank and lambda.
-Results are calculated on a random hold out on the supplied dataset.
-See Madeleine Udell, Corinne Horn, Reza Zadeh and Stephen Boyd (2016), "Generalized Low Rank Models", Foundations and Trends® in Machine Learning: Vol. 9: No. 1, pp 1-118.}
+\title{Cross Validation for PQC}
 \usage{
 cv.pqc(data, projDimRange, tau, lambdaRange, muEst = TRUE,
   epsilon = 1/log10(nrow(data)), shareNA = 0.1, iterTol = 200,
@@ -41,7 +39,9 @@ cv.pqc(data, projDimRange, tau, lambdaRange, muEst = TRUE,
 list containing pqcomp() results
 }
 \description{
-Cross validation wrapper for pqcomp(): Select ranges for rank and lambda.
+Wrapper for pqcomp(): Select ranges for rank and lambda.
 Results are calculated on a random hold out on the supplied dataset.
-See Madeleine Udell, Corinne Horn, Reza Zadeh and Stephen Boyd (2016), "Generalized Low Rank Models", Foundations and Trends® in Machine Learning: Vol. 9: No. 1, pp 1-118.
+}
+\references{
+Madeleine Udell et al. (2016), "Generalized Low Rank Models".
 }

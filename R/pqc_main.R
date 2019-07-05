@@ -23,7 +23,7 @@
 
 # Internal minimization function -----------------------------------------
 
-.pqc.optim = function(X,Z,basis,tau, lambda = 1, const=FALSE) { # This is the function containing the Quadratic Programming
+.pqc.optim = function(X, Z, basis, tau, lambda = 1, const=FALSE) { # This is the function containing the Quadratic Programming
   not.na = !is.na(X) # X is a vector, so check how many entries are not empty
   X = X[not.na] # remove NA entries from vector
   Z = Z[not.na] # same for the weight vector
@@ -64,7 +64,6 @@
 }
 
 
-#' Wrapper for the optimization function
 #' @importFrom foreach foreach %dopar%
 .pqc.next = function (X, Z, basis, tau, lambda, doPar, muEst) {
   n = ncol(X) # get data matrix dimensions
@@ -97,7 +96,9 @@
 
 # Main PQC algorithm -----------------------------------------------------
 
-#' Main quantile components algorithm
+#' Principal Quantile Components
+#'
+#' @description Calculate principal quantile components (PQC) via smooth approximation of the asymmetric L1-Norm.
 #'
 #' @param data data matrix with rows as data entries and columns as variables
 #' @param projDim no. of desired principal components
@@ -115,6 +116,13 @@
 #'
 #' @return list object containing components and loadings
 #'
+#' @examples
+#' # generating data
+#' n = 100
+#' X = data.frame(cbind(rnorm(n),rnorm(n),rnorm(n)))
+#' # running the main method
+#' pqcomp(data = X, projDim = 2, tau =  0.9, lambda = 0.1, muEst = T)
+#'
 #' @export
 pqcomp = function(data, # data matrix with rows as data entries and columns as variables
                   projDim, # no. of desired principal components
@@ -127,7 +135,7 @@ pqcomp = function(data, # data matrix with rows as data entries and columns as v
                   convTol = NA, # set algorithm to stop if weigths did not change for convTol no. of consecutive iterations (deactivated for tau=0.5)
                   preOut = NA, # continues based on previous output (if doSeq is TRUE, the components of a previos PCA method are sufficient)
                   progBar = TRUE, # optional progressbar
-                  doPar =TRUE, # use parallel backend (*nix systems recommended),
+                  doPar = FALSE, # use parallel backend (*nix systems recommended),
                   doSeq = FALSE, # run via sequential optimization
                   randomSeed = NA # select a random seed as in set.seed for fixed initialization
 )
@@ -274,9 +282,10 @@ pqcomp = function(data, # data matrix with rows as data entries and columns as v
   return(x)
 }
 
-#' Cross validation wrapper for pqcomp(): Select ranges for rank and lambda.
+#' Cross Validation for PQC
+#'
+#' @description Wrapper for pqcomp(): Select ranges for rank and lambda.
 #' Results are calculated on a random hold out on the supplied dataset.
-#' See Madeleine Udell, Corinne Horn, Reza Zadeh and Stephen Boyd (2016), "Generalized Low Rank Models", Foundations and Trends® in Machine Learning: Vol. 9: No. 1, pp 1-118.
 #'
 #' @param data data matrix with rows as data entries and columns as variables
 #' @param projDimRange # range of desired principal components
@@ -293,7 +302,7 @@ pqcomp = function(data, # data matrix with rows as data entries and columns as v
 #' @param doSeq run via sequential optimization
 #'
 #' @return list containing pqcomp() results
-#'
+#' @references Madeleine Udell et al. (2016), "Generalized Low Rank Models".
 #' @export
 cv.pqc = function(data,
                   projDimRange,
@@ -332,7 +341,9 @@ cv.pqc = function(data,
   return(results)
 }
 
-#' Calculate cross validation scores via quantile check loss on the result of cv.pqc().
+#' Cross Validation Scores
+#'
+#' @description Calculate cross validation scores created by cv.pqc() via quantile check loss.
 #'
 #' @param cv.result list output of cv.pqc()
 #' @param tau asymmetry parameter (0<tau<1)

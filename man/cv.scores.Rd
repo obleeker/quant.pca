@@ -2,7 +2,7 @@
 % Please edit documentation in R/pqc_main.R
 \name{cv.scores}
 \alias{cv.scores}
-\title{Calculate cross validation scores via quantile check loss on the result of cv.pqc().}
+\title{Cross Validation Scores}
 \usage{
 cv.scores(cv.result, tau)
 }
@@ -15,5 +15,5 @@ cv.scores(cv.result, tau)
 list containing pqcomp() results
 }
 \description{
-Calculate cross validation scores via quantile check loss on the result of cv.pqc().
+Calculate cross validation scores created by cv.pqc() via quantile check loss.
 }
