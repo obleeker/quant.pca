@@ -15,12 +15,13 @@ The code was developed as part of this authors master thesis.
 ## Installation
 You can install quant.pca from github with:
 ```
-devtools::install_github("obleeker/qant.pca")
+devtools::install_github("obleeker/quant.pca")
 ```
 
 ## Example
 
 ```
+library(quant.pca)
 # generate data
 n = 100
 X = data.frame(cbind(rnorm(n),rnorm(n),rnorm(n)))
