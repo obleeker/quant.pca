@@ -1,7 +1,7 @@
 # Principal Quantile Components Analysis
 ## Introduction
 Principal Quantile Components Analysis is an analogue to PCA in an asymmetric L1 norm. 
-For the theory behind see Tran and Osipenko (2016).
+For the theory behind see Tran and Osipenko (2019).
 This method is based on the robust quantile matrix factorization algorithm developed by Zhu et al. (2017).
 It approaches PCA in an asymmetric linear norm via smooth approximation of the objective function.
 The objective function is regularized and sequentially optimized via quadratic programming. 
